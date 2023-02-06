@@ -9,6 +9,6 @@ app.get('/user/:id', (req, res) => {
   res.status(200).send(req.params.id)
 })
 
-app.listen(3000, () => {
+app.listen(3001, () => {
   console.log('start listening')
 })
