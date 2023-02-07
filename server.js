@@ -1,3 +1,4 @@
+const path = require('path');
 const Redis = require('ioredis');
 const express = require('express');
 const app = express();
@@ -26,8 +27,11 @@ const init = async () => {
   ])
 }
 
+app.set('view engine', 'ejs');
+app.set('/static', express.static(path.join(__dirname, 'public')));
+
 app.get('/', (req, res) => {
-  res.status(200).send('hello');
+  res.render(path.join(__dirname, 'views', 'index.ejs'));
 });
 
 app.get('/user/:id', async (req, res) => {
@@ -58,7 +62,7 @@ app.get('/users', async (req, res) => {
       }
     }
 
-    res.status(200).json(users);
+    res.render(path.join(__dirname, 'views', 'users.ejs'), { users: users });
   } catch (err) {
     console.log(err);
     res.status(500).send('internal error');
