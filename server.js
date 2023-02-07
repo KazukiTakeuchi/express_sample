@@ -30,7 +30,7 @@ app.get('/', (req, res) => {
   res.status(200).send('hello');
 });
 
-app.get('/users/:id', async (req, res) => {
+app.get('/user/:id', async (req, res) => {
   try {
     const key = `users:${req.params.id}`;
     const val = await redis.get(key);
