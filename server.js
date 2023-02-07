@@ -42,6 +42,29 @@ app.get('/user/:id', async (req, res) => {
   }
 });
 
+app.get('/users', async (req, res) => {
+  try {
+    const stream = redis.scanStream({
+      match: 'users:*',
+      count: 2
+    });
+
+    const users = [];
+    for await (const resultKeys of stream) {
+      for (const key of resultKeys) {
+        const value = await redis.get(key);
+        const user = JSON.parse(value);
+        users.push(user);
+      }
+    }
+
+    res.status(200).json(users);
+  } catch (err) {
+    console.log(err);
+    res.status(500).send('internal error');
+  }
+})
+
 redis.once('ready', async () => {
   try {
     await init();
