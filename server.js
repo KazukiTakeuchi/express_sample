@@ -16,11 +16,11 @@ const init = async () => {
       name: 'take'
     })),
     redis.set('users:2', JSON.stringify({
-      id: 1,
+      id: 2,
       name: 'kazu'
     })),
     redis.set('users:3', JSON.stringify({
-      id: 1,
+      id: 3,
       name: 'yoshikawa'
     })),
   ])
