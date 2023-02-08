@@ -2,8 +2,9 @@ import { useState } from 'react';
 import User from './User'
 
 const getUsers = async () => {
-  const response = await fetch('http://localhost:3001/api/users');
-  return response.json;
+  const response = await fetch('/api/users');
+  const body = await response.json();
+  return body;
 }
 
 function App() {
