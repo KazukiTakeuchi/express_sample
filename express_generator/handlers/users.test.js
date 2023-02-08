@@ -74,3 +74,16 @@ test('getUsers', async () => {
     { id: 4, name: 'd' }
   ]);
 });
+
+test('getUser 失敗', async () => {
+  mockRedisGet.mockRejectedValue(new Error('something error'));
+
+  const reqMock = { params: { id: 1 } };
+
+  try {
+    await getUser(reqMock);
+    assert.strictEqual(true, false, 'この処理が通ると正常終了しているので実装ミス');
+  } catch (err) {
+    expect(err instanceof Error).toStrictEqual(true);
+  }
+});
