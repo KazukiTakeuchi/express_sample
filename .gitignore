@@ -1,2 +1,4 @@
 /node_modules
 /express_generator/node_modules
+/monorepo/node_modules
+.DS_Store
