@@ -1,7 +1,7 @@
 const path = require('path');
 const express = require('express');
 const redis = require('./lib/redis');
-const usersHandler = require('./handlers/user');
+const usersHandler = require('./handlers/users');
 
 const app = express();
 
