@@ -11,6 +11,11 @@ jest.mock('../lib/redis', () => {
   };
 });
 
+beforeEach(() => {
+  mockRedisGet.mockClear();
+  mockRedisScanStream.mockClear();
+});
+
 const { getUser, getUsers } = require('./users');
 
 test('getUser', async () => {
