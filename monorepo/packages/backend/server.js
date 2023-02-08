@@ -15,10 +15,10 @@ app.get('/user/:id', async (req, res) => {
   }
 })
 
-app.get('/users', async (req, res) => {
+app.get('/api/users', async (req, res) => {
   try {
-    const locals = await usersHandler.getUsers(req);
-    res.render(path.join(__dirname, 'views', 'users.ejs'), locals);
+    const users = await usersHandler.getUsers(req);
+    res.status(200).json(users)
   } catch (err) {
     console.log(err);
     res.status(500).send('internal error')
